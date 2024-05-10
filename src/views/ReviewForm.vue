@@ -18,6 +18,7 @@
           </div>
           <button type="submit" class="btn btn-primary">Сохранить</button>
         </form>
+        <iframe id="myframe" width="560" height="400" data-src="https://player.cdnvideohub.com/playerjs?partner=23&amp;kid=326" frameborder="0" allowfullscreen="" src="https://player.cdnvideohub.com/playerjs?partner=23&amp;kid=326"></iframe>
       </div>
     </div>
   </div>
