@@ -2,10 +2,13 @@
   <div class="movie-list">
     <div class="movie-list-header">
       <h2>Список фильмов</h2>
+      <form @submit.prevent="searchMovies">
+        <input type="text" v-model="searchQuery" placeholder="Поиск по названию фильма" class="search">
+      </form>
     </div>
     <div class="movie-list-body">
-      <div class="movie-list-item" v-for="movie in movies" :key="movie.id">
-        <div class="movie-poster">
+      <div class="movie-list-item" v-for="movie in filteredMovies" :key="movie.id" @click="addReview(movie)">
+        <div class="movie-poster" >
           <img :src="movie.poster" alt="Movie Poster">
         </div>
         <div class="movie-info">
@@ -14,7 +17,6 @@
           <div class="movie-rating">
             <span>{{ movie.rating }}</span>
           </div>
-          <button class="btn btn-primary" @click="addReview(movie)">Просмотреть отзывы</button>
         </div>
       </div>
     </div>
@@ -22,6 +24,11 @@
 </template>
 
 <style scoped>
+.search {
+  width: 100%;
+  height: 100%;
+}
+
 .movie-list {
   display: flex;
   flex-direction: column;
@@ -57,6 +64,7 @@
 
 .movie-list-item:hover {
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .movie-poster {
@@ -121,9 +129,18 @@
 import axios from "axios";
 
 export default {
+  computed: {
+    filteredMovies() {
+      return this.movies.filter(movie =>
+          movie.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    }
+  },
+
   data() {
     return {
-      movies: this.$store.state.movies
+      movies: this.$store.state.movies,
+      searchQuery: ''
     }
   },
   created() {

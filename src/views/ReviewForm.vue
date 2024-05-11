@@ -1,6 +1,7 @@
 <template>
   <div class="container">
-    <div class="row justify-content-center">
+    <div class="cont">
+    <iframe id="myframe" width="560" height="400" class="film" data-src="https://player.cdnvideohub.com/playerjs?partner=23&amp;kid=326" frameborder="0" allowfullscreen="" src="https://player.cdnvideohub.com/playerjs?partner=23&amp;kid=326"></iframe>
       <div class="col-md-4">
         <form @submit.prevent="saveNewReview">
           <h2>{{ title }} "{{ movie.title }}"</h2>
@@ -18,13 +19,22 @@
           </div>
           <button type="submit" class="btn btn-primary">Сохранить</button>
         </form>
-        <iframe id="myframe" width="560" height="400" data-src="https://player.cdnvideohub.com/playerjs?partner=23&amp;kid=326" frameborder="0" allowfullscreen="" src="https://player.cdnvideohub.com/playerjs?partner=23&amp;kid=326"></iframe>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
+.cont {
+   display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.film{
+  align-self: center;
+}
+
 .container {
   padding: 40px;
   background-color: #141414;
